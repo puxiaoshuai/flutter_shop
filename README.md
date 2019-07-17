@@ -1,6 +1,6 @@
 # flutter_shop
 
-根据技术胖的视频学习创建商城项目
+
 
 ## Getting Started
 
@@ -14,3 +14,14 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.dev/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+###### 本地图片
+在android同目录新建images.并复制图片到此
+在pubspec.yaml中添加
+```
+flutter:
+
+  uses-material-design: true
+  assets:
+  - images/ic_arrows_right.png
+  - images/ic_back.jpg
+```

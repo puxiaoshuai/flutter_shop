@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_shop/expend/draw_item.dart';
 import 'package:flutter_shop/pages/home_page.dart';
 import 'package:flutter_shop/pages/car_page.dart';
 import 'package:flutter_shop/pages/category_page.dart';
@@ -23,7 +24,8 @@ class _IndexPageState extends State<IndexPage> {
     BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.home), title: Text("会员中心")),
   ];
-  final List<Widget> pages = [HomePage(), CategoryPage(), CarPage(), MinePage()];
+  final List<Widget> pages = [HomePage(), CategoryPage(), CarPage(), MinePage()
+  ];
 
   @override
   void initState() {
@@ -36,8 +38,25 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text("百家商城"),
+        centerTitle: true,
+        title: Text("乐游原"),
+        elevation:0.0,
+
+      ),
+      drawer: new Drawer(
+        child: ListView(
+          children: <Widget>[
+             Image.asset("images/ic_back.jpg"),
+            ListTile(
+              title: Text("蒲小帅"),
+              trailing: Icon(Icons.menu),
+            ),
+            Draw_Item(title: "个人信息",),
+            Draw_Item(title: "我的收藏",),
+            Draw_Item(title: "每日一诗",),
+            Draw_Item(title: "日志记录",),
+
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -58,6 +77,5 @@ class _IndexPageState extends State<IndexPage> {
       ),
     );
   }
-
-
 }
+
