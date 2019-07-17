@@ -25,3 +25,21 @@ flutter:
   - images/ic_arrows_right.png
   - images/ic_back.jpg
 ```
+###### 侧滑去掉原来的图标，或者自定义
+```
+appBar: AppBar(
+
+        centerTitle: true,
+        title: Text("乐游原"),
+        elevation:0.0,
+        leading: Text(""),  //此处进行设置
+      ),
+
+      自定义图标：
+       leading: Builder(
+                 builder: (context) => IconButton(
+                       icon: new Icon(Icons.settings),
+                       onPressed: () => Scaffold.of(context).openDrawer(),
+                     ),
+               ),
+      ```

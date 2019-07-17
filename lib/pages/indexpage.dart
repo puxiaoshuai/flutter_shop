@@ -38,11 +38,13 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         centerTitle: true,
         title: Text("乐游原"),
         elevation:0.0,
-
+        leading: Text(""),
       ),
+
       drawer: new Drawer(
         child: ListView(
           children: <Widget>[
