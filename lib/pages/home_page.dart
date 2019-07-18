@@ -31,15 +31,12 @@ class _HomePageState extends State<HomePage>
     // TODO: implement initState
     super.initState();
     tabs=<Tab>[
-      Tab(text: "热点",),
-      Tab(text: "美图",),
-      Tab(text: "体育",),
-      Tab(text: "搞笑",),
-      Tab(text: "汽车",),
-      Tab(text: "段子",),
-      Tab(text: "吐槽",),
-      Tab(text: "视频",),
-      Tab(text: "二次元",),
+      Tab(text: "Android",),
+      Tab(text: "iOS",),
+      Tab(text: "休息视频",),
+      Tab(text: "拓展资源",),
+      Tab(text: "前端",),
+      Tab(text: "福利",),
 
     ];
     if(tabs.length>3){
@@ -61,14 +58,18 @@ class _HomePageState extends State<HomePage>
         title: TabBar(tabs: tabs,controller: mconroller,isScrollable: isscroll,),
       ),
       body: TabBarView(controller: mconroller,
-          children: tabs
-              .map((Tab tab) =>
-               NewsPage(type: tab.text+"jajaj ",))
-              .toList()),
+          children: <Widget>[
+          NewsPage(type: tabs[0].text,),
+          NewsPage(type: tabs[1].text,),
+          NewsPage(type: tabs[2].text,),
+           NewsPage(type: tabs[3].text,),
+         NewsPage(type: tabs[4].text,),
+          NewsPage(type: tabs[5].text,),
 
-    );
+          ],
+
+    ));
   }
-
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;

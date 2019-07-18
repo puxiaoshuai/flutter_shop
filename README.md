@@ -43,3 +43,4 @@ appBar: AppBar(
                      ),
                ),
       ```
+###### tab切换防止重复加载，使用  with  AutomaticKeepAliveClientMixin,并重写方法 为true
