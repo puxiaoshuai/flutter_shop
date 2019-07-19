@@ -8,15 +8,15 @@ part of 'hot_entry.dart';
 
 HotEntry _$HotEntryFromJson(Map<String, dynamic> json) {
   return HotEntry((json['T1414142214384'] as List)
-      ?.map((e) =>
-          e == null ? null : HotBean.fromJson(e as Map<String, dynamic>))
+      ?.map(
+          (e) => e == null ? null : HotBean.fromJson(e as Map<String, dynamic>))
       ?.toList());
 }
 
 Map<String, dynamic> _$HotEntryToJson(HotEntry instance) =>
     <String, dynamic>{'T1414142214384': instance.hotlist};
 
-HotBean _$T1414142214384FromJson(Map<String, dynamic> json) {
+HotBean _$HotBeanFromJson(Map<String, dynamic> json) {
   return HotBean(
       json['template'] as String,
       json['lmodify'] as String,
@@ -50,8 +50,7 @@ HotBean _$T1414142214384FromJson(Map<String, dynamic> json) {
       json['cid'] as String);
 }
 
-Map<String, dynamic> _$T1414142214384ToJson(HotBean instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$HotBeanToJson(HotBean instance) => <String, dynamic>{
       'template': instance.template,
       'lmodify': instance.lmodify,
       'source': instance.source,

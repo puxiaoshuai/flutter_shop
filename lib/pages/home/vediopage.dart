@@ -3,25 +3,24 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_shop/jsonbean/news_entry.dart';
+import 'package:flutter_shop/jsonbean/vedio_entry.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:video_player/video_player.dart';
+import 'hot_web.dart';
+import 'package:chewie/chewie.dart';
 
-class NewsPage extends StatefulWidget {
 
-  String type;
-
-  NewsPage({Key key, @required this.type});
-
+class VedioPage extends StatefulWidget {
   @override
-  _NewsPageState createState() => new _NewsPageState();
+  _VedioPageState createState() => new _VedioPageState();
 }
 
 
-class _NewsPageState extends State<NewsPage>
+class _VedioPageState extends State<VedioPage>
     with AutomaticKeepAliveClientMixin {
 
-  List<Results> mlistdata = [];
-  int curr_page = 1;
+  List<VedioItem> mlistdata = [];
+  int curr_page = 0;
   RefreshController _refreshController = RefreshController(
       initialRefresh: false);
 
@@ -30,15 +29,17 @@ class _NewsPageState extends State<NewsPage>
     // TODO: implement initState
     super.initState();
     getNews(curr_page);
+
+
   }
 
   Future getNews(int page) async {
     try {
       Response response = await Dio().get(
-          "http://gank.io/api/data/${widget.type}/10/${page}");
-      var data = NewsEntry.fromJson(jsonDecode(response.toString()));
+          "http://c.m.163.com/recommend/getChanListNews?channel=T1457068979049&subtab=&size=10&offset=${curr_page}&fn=1&devId=Zlu9vafplVvQTmVtQz0h%2BiKMeAVybHyVL9jAQ%2Fqhu2zXfWEHTjuSItIWT5Nn4OczIIGNeE0nI41SFrBIaL1THA%3D%3D");
+      var data = VedioEntry.fromJson(jsonDecode(response.toString()));
       setState(() {
-        mlistdata.addAll(data.results);
+        mlistdata.addAll(data.vedioitem);
       });
       _refreshController.refreshCompleted();
 
@@ -51,9 +52,10 @@ class _NewsPageState extends State<NewsPage>
 
   @override
   Widget build(BuildContext context) {
-    final size=MediaQuery.of(context).size;
-    final height=size.height;
-    final width=size.width;
+
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
     if (mlistdata.length == 0) {
       return Center(
         child: CircularProgressIndicator(),
@@ -71,30 +73,39 @@ class _NewsPageState extends State<NewsPage>
           loadMoreData();
         },
         controller: _refreshController,
-        child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,//个数
-            childAspectRatio: 0.7
+        child: ListView.builder(itemBuilder: (c, i) {
+          return row_cell(mlistdata[i]);
+        }
+          , itemCount: mlistdata.length,
 
-        ),
-            itemCount: mlistdata.length,
-            itemBuilder: (BuildContext c,int index){
-                return new Padding(padding: EdgeInsets.all(8),
-
-                child: new ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                 child: new Container(
-
-                  child: Image.network(mlistdata[index].url,fit: BoxFit.cover,
-                  ),
-                  color: Colors.grey,
-                )),
-              );
-            }),
-
+         ),
       );
     }
   }
 
+
+  row_cell(var item){
+
+    return  Stack(
+      alignment: Alignment.topCenter,
+       children: <Widget>[
+
+         Chewie(
+             controller: new ChewieController(
+                 aspectRatio: 4/3,
+                 autoPlay: false,
+                 allowFullScreen: false,
+                 placeholder: Image.network(item.cover),
+                 looping: false,
+                 videoPlayerController: new VideoPlayerController.network(item.mp4Url)
+
+             )
+         ),
+         Text(item.title,style: TextStyle(color: Colors.white,fontSize: 18)),
+       ],
+    );
+
+ }
   @override
   void dispose() {
     // TODO: implement dispose
@@ -103,7 +114,7 @@ class _NewsPageState extends State<NewsPage>
   }
   void _pullToRefresh() async {
          await Future.delayed(Duration(seconds: 1),(){
-           curr_page = 1;
+           curr_page = 10;
            mlistdata.clear();
            getNews(curr_page);
            _refreshController.refreshCompleted();
@@ -112,10 +123,9 @@ class _NewsPageState extends State<NewsPage>
 
   loadMoreData() async {
      await Future.delayed(Duration(seconds: 1),(){
-       this.curr_page++;
-       print("页码"+this.curr_page.toString());
+       this.curr_page=this.curr_page+10;
        getNews(this.curr_page);
-       if(this.curr_page<10){
+       if(this.curr_page<200){
          _refreshController.loadComplete();
        }else{
          _refreshController.loadNoData();

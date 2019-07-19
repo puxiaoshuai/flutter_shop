@@ -111,7 +111,7 @@ part 'hot_entry.g.dart';
 
   HotBean(this.template,this.lmodify,this.source,this.postid,this.title,this.mtime,this.hasImg,this.topicBackground,this.digest,this.boardid,this.alias,this.hasAD,this.imgsrc,this.ptime,this.daynum,this.hasHead,this.order,this.votecount,this.hasCover,this.docid,this.tname,this.url3w,this.priority,this.url,this.ename,this.replyCount,this.ltitle,this.hasIcon,this.subtitle,this.cid,);
 
-  factory HotBean.fromJson(Map<String, dynamic> srcJson) => _$T1414142214384FromJson(srcJson);
+  factory HotBean.fromJson(Map<String, dynamic> srcJson) => _$HotBeanFromJson(srcJson);
 
 }
 

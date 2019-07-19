@@ -4,6 +4,7 @@ import 'package:flutter_shop/config/httpHeaders.dart';
 
 import 'home/news.dart';
 import 'home/hotpage.dart';
+import 'home/vediopage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,6 +35,7 @@ class _HomePageState extends State<HomePage>
     tabs=<Tab>[
       Tab(text: "信息要闻",),
       Tab(text: "福利",),
+      Tab(text: "热点视频",),
 
     ];
     if(tabs.length>3){
@@ -57,7 +59,8 @@ class _HomePageState extends State<HomePage>
       body: TabBarView(controller: mconroller,
           children: <Widget>[
            HotPage(),
-          NewsPage(type: tabs[1].text,),
+           NewsPage(type: tabs[1].text,),
+           VedioPage()
           ],
 
     ));
