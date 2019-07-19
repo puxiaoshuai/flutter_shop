@@ -23,7 +23,7 @@ class _NewsPageState extends State<NewsPage>
   List<Results> mlistdata = [];
   int curr_page = 1;
   RefreshController _refreshController = RefreshController(
-      initialRefresh: true);
+      initialRefresh: false);
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _NewsPageState extends State<NewsPage>
   Widget build(BuildContext context) {
     if (mlistdata.length == 0) {
       return Center(
-        child: Text("暂无数据"),
+        child: CircularProgressIndicator(),
       );
     } else {
       return SmartRefresher(

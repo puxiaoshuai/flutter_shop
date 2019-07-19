@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_shop/config/httpHeaders.dart';
 
 import 'home/news.dart';
+import 'home/hotpage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -31,11 +32,7 @@ class _HomePageState extends State<HomePage>
     // TODO: implement initState
     super.initState();
     tabs=<Tab>[
-      Tab(text: "Android",),
-      Tab(text: "iOS",),
-      Tab(text: "休息视频",),
-      Tab(text: "拓展资源",),
-      Tab(text: "前端",),
+      Tab(text: "信息要闻",),
       Tab(text: "福利",),
 
     ];
@@ -59,13 +56,8 @@ class _HomePageState extends State<HomePage>
       ),
       body: TabBarView(controller: mconroller,
           children: <Widget>[
-          NewsPage(type: tabs[0].text,),
+           HotPage(),
           NewsPage(type: tabs[1].text,),
-          NewsPage(type: tabs[2].text,),
-           NewsPage(type: tabs[3].text,),
-         NewsPage(type: tabs[4].text,),
-          NewsPage(type: tabs[5].text,),
-
           ],
 
     ));

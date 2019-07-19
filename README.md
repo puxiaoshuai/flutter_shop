@@ -14,6 +14,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.dev/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+###### http://img2.imgtn.bdimg.com/it/u=829044612,3699393036&fm=26&gp=0.jpg
 ###### 本地图片
 在android同目录新建images.并复制图片到此
 在pubspec.yaml中添加
@@ -44,3 +45,4 @@ appBar: AppBar(
                ),
       ```
 ###### tab切换防止重复加载，使用  with  AutomaticKeepAliveClientMixin,并重写方法 为true
+###### json解析，用工具，然后执行  flutter packages pub run build_runner build
